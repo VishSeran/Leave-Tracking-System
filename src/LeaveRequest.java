@@ -8,7 +8,7 @@ public class LeaveRequest {
     private String endDate;
     private String status; //pending, Approved, Denied
     private String reason;
-    private int leaveBalance = 20;
+   
 
     public LeaveRequest(int requestId, Employee employee, String startDate,
             String endDate, String reason) {
@@ -22,16 +22,5 @@ public class LeaveRequest {
     }
 
    
-    public int getLeaveBalance(){
-        return leaveBalance;
-    }
-
     
-    public void setLeaveBalance(int leaveBalance){
-        if(leaveBalance >= 0){
-            this.leaveBalance = leaveBalance;
-        }else{
-            System.out.println("The leave balance cannot be negative");
-        }
-    }
 }
