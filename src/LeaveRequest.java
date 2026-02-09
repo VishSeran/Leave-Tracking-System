@@ -21,12 +21,12 @@ public class LeaveRequest {
         this.reason = reason;
     }
 
-    //getter method
+   
     public int getLeaveBalance(){
         return leaveBalance;
     }
 
-    //setter method
+    
     public void setLeaveBalance(int leaveBalance){
         if(leaveBalance >= 0){
             this.leaveBalance = leaveBalance;
