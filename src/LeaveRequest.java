@@ -2,10 +2,11 @@ package src;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 
 
 
-public class LeaveRequest {
+public abstract class LeaveRequest implements Approve {
 
     private int requestId;
     private Employee employee;
@@ -26,16 +27,45 @@ public class LeaveRequest {
         this.reason = reason;
     }   
 
-    public boolean processRequest(){
-        System.out.println("Processing generic leave request...");
-        return true;
-    }
+    public abstract  boolean processRequest();
 
     public float getDuration() {
     
         long days = ChronoUnit.DAYS.between(startDate, endDate);
         float duration = (float) days;
-        return duration;
+        return duration+1;
+    }   
+
+    public abstract int calculateLeaveDays();
+
+    private ArrayList<StatusChange> statusHistory = new ArrayList<>();
+
+    public class StatusChange {
+        private String oldStatus;
+        private String newStatus;
+        private LocalDate changeDate;
+        private String changeBy;
+
+
+        public StatusChange (String oldStatus, String newStatus, LocalDate changeDate, String changeBy){
+            this.oldStatus = oldStatus;
+            this.newStatus = newStatus;
+            this.changeDate = changeDate;
+            this.changeBy = changeBy;
+        }
+
+    
+
+    }
+
+    public void changeStatus (String newStatus, String changeBy, LocalDate changDate){
+        String oldStatus = this.status;
+        this.status = newStatus;
+
+        //create a new object and add to the arrrayList
+        StatusChange change = new StatusChange(oldStatus, newStatus, changDate, changeBy);
+        statusHistory.add(change);
+
     }   
 }
 

@@ -18,7 +18,7 @@ public class SickLeaveRequest extends LeaveRequest {
         return medicalCertificateProvided;
     }
 
-    @Override
+    
     public boolean processRequest() {
         if (medicalCertificateProvided == false && this.getDuration() > 2) {
             System.out.println("Sick leave longer than 2 days requires a medical certificate");
