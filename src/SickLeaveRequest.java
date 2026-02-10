@@ -6,10 +6,11 @@ public class SickLeaveRequest extends LeaveRequest {
 
     private boolean medicalCertificateProvided;
 
-    public SickLeaveRequest(int requestId, Employee employee, LocalDate startDate, LocalDate endDate,
-            Boolean medicalCertificateProvided) {
+    public SickLeaveRequest(int requestId, Employee employee, LocalDate startDate, LocalDate endDate, String reason,
+            boolean medicalCertificateProvided) {
 
-        super(requestId, employee, startDate, endDate);
+        super(requestId, employee, startDate, endDate, "SickLeave");
+
         this.medicalCertificateProvided = medicalCertificateProvided;
     }
 
