@@ -45,28 +45,42 @@ public abstract class LeaveRequest implements Approve {
         private String newStatus;
         private LocalDate changeDate;
         private String changeBy;
+        private String reason;
 
 
-        public StatusChange (String oldStatus, String newStatus, LocalDate changeDate, String changeBy){
+        public StatusChange (String oldStatus, String newStatus, LocalDate changeDate, String changeBy, String reason){
             this.oldStatus = oldStatus;
             this.newStatus = newStatus;
             this.changeDate = changeDate;
             this.changeBy = changeBy;
+            this.reason = reason;
         }
 
     
 
     }
 
-    public void changeStatus (String newStatus, String changeBy, LocalDate changDate){
+    public void changeStatus (String newStatus, String changeBy, LocalDate changDate, String reason){
         String oldStatus = this.status;
         this.status = newStatus;
 
         //create a new object and add to the arrrayList
-        StatusChange change = new StatusChange(oldStatus, newStatus, changDate, changeBy);
+        StatusChange change = new StatusChange(oldStatus, newStatus, changDate, changeBy, reason);
         statusHistory.add(change);
 
     }   
+
+    @Override
+    public boolean approve(String approverName,String reason){
+        changeStatus("Approved", approverName, LocalDate.now(), reason);
+        return true;
+    }
+
+    @Override
+    public boolean deny (String approverName, String reason){
+        changeStatus("Denied", approverName, LocalDate.now(), reason);
+        return true;
+    }
 }
 
 

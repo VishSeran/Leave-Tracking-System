@@ -29,4 +29,10 @@ public class SickLeaveRequest extends LeaveRequest {
         }
     }
 
+    @Override
+    public int calculateLeaveDays(){
+       return (int) this.getDuration();
+    }
+
+
 }
