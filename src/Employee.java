@@ -1,4 +1,7 @@
 package src;
+
+import java.util.ArrayList;
+
 public class Employee {
     private int employeeId;
     private String name;
@@ -25,4 +28,31 @@ public class Employee {
             System.out.println("The leave balance cannot be negative");
         }
     }
+
+    //use an ArrayList to store leave requests for each employee
+    ArrayList<LeaveRequest> leaveRequestHistory = new ArrayList<>();
+
+    //add leave request
+    public void addLeaveRequest (LeaveRequest request){
+        leaveRequestHistory.add(request);
+    }
+
+    //get leave all requests
+    public ArrayList<LeaveRequest> getLeaveRequests(){
+        return leaveRequestHistory;
+    }
+
+    public LeaveRequest getLeaveById(int reqId){
+        for(LeaveRequest request: leaveRequestHistory){
+            if(leaveRequestHistory.get(reqId) == request){
+                return request;
+            }
+        }
+
+        return null;
+    }
+
+
+
+
 }
